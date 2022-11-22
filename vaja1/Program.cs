@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using vaja1.Problems;
 
 namespace vaja1
 {
@@ -22,6 +24,19 @@ namespace vaja1
 
             double[] bestSolutionX = new double[dimension];
             double bestSolution = 0;
+
+            #region Declarations
+            Solution ackleyS, bukingS, easomS, penHolderS, rosenBrockS, schwefel26S, spehreS, tridS;
+            HillClimbing hc = new HillClimbing();
+            List<Solution> ackleySL = new List<Solution>();
+            List<Solution> bukingSL = new List<Solution>();
+            List<Solution> easomSL = new List<Solution>();
+            List<Solution> penHolderSL = new List<Solution>();
+            List<Solution> rosenBrockSL = new List<Solution>();
+            List<Solution> schwefel26SL = new List<Solution>();
+            List<Solution> spehreSL = new List<Solution>();
+            List<Solution> tridSL = new List<Solution>();
+            #endregion
 
             switch (problem)
             {
@@ -215,11 +230,85 @@ namespace vaja1
                         }
                     }
                     break;
-                    #endregion
+                #endregion
+
+                #region HillClimbing
+                case 9:
+                    Console.WriteLine("---------- HillClimbing ----------");
+
+                    for (int i = 0; i < 100; i++)
+                    {
+                        ackleyS = hc.Execute(new Ackley(dimension,maxFes));
+                        bukingS = hc.Execute(new Bukin(maxFes));
+                        easomS = hc.Execute(new Easom(maxFes));
+                        penHolderS = hc.Execute(new PenHolder(maxFes));
+                        rosenBrockS = hc.Execute(new Rosenbrock(dimension,maxFes));
+                        schwefel26S = hc.Execute(new Schwefel26(dimension,maxFes));
+                        spehreS = hc.Execute(new Sphere(dimension,maxFes));
+                        tridS = hc.Execute(new Trid(dimension,maxFes));
+
+                        ackleySL.Add(ackleyS);
+                        bukingSL.Add(bukingS);
+                        easomSL.Add(easomS);
+                        penHolderSL.Add(penHolderS);
+                        rosenBrockSL.Add(rosenBrockS);
+                        schwefel26SL.Add(schwefel26S);
+                        spehreSL.Add(spehreS);
+                        tridSL.Add(tridS);
+                    }
+                    break;
+                #endregion
             }
 
-            Console.WriteLine("\nBest solution --> x: [{0}] = {1} :)", string.Join(", ", bestSolutionX), bestSolution);
+            if(!problem.Equals(9))
+            {
+                Console.WriteLine("\nBest solution --> x: [{0}] = {1} :)", string.Join(", ", bestSolutionX), bestSolution);
+            }
+            else
+            {
+                double[] resitva = smallestFitness(ackleySL);
+                Console.WriteLine("Ackley min: " + resitva[0] + " avg: " + resitva[2]);
+                resitva = smallestFitness(bukingSL);
+                Console.WriteLine("Bukin min: " + resitva[0] + " avg: " + resitva[2]);
+                resitva = smallestFitness(easomSL);
+                Console.WriteLine("Easom min: " + resitva[0] + " avg: " + resitva[2]);
+                resitva = smallestFitness(penHolderSL);
+                Console.WriteLine("PenHolder min: " + resitva[0] + " avg: " + resitva[2]);
+                resitva = smallestFitness(rosenBrockSL);
+                Console.WriteLine("RosenBrock min: " + resitva[0] + " avg: " + resitva[2]);
+                resitva = smallestFitness(schwefel26SL);
+                Console.WriteLine("Schwefel26 min: " + resitva[0] + " avg: " + resitva[2]);
+                resitva = smallestFitness(spehreSL);
+                Console.WriteLine("Sphere min: " + resitva[0] + " avg: " + resitva[2]);
+                resitva = smallestFitness(tridSL);
+                Console.WriteLine("Trid min: " + resitva[0] + " avg: " + resitva[2]);
+
+            }
             Console.ReadLine();
         }
+
+        #region SmallestFitness
+        // 0 - smallest fitness
+        // 1 - array X
+        // 2 - average
+        public static double[] smallestFitness(List<Solution> solutionA)
+        {
+            double[] returnValue = new double[3];
+            returnValue[0] = solutionA[0].Fitness;
+            returnValue[1] = 0;
+            double sum = solutionA[0].Fitness;
+            for(int i=1;i<solutionA.Count;i++)
+            {
+                sum+= solutionA[i].Fitness;
+                if (solutionA[i].Fitness < returnValue[0])
+                {
+                    returnValue[0] = solutionA[i].Fitness;
+                    returnValue[1] = i;
+                }
+            }
+            returnValue[2] = sum / 100;
+            return returnValue;
+        }
+        #endregion
     }
 }

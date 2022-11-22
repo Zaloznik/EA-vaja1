@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm.cs" />
+    <Compile Include="HillClimbing.cs" />
     <Compile Include="Problem.cs" />
     <Compile Include="Problems\Ackley.cs" />
     <Compile Include="Problems\Bukin.cs" />
@@ -54,6 +56,7 @@
     <Compile Include="Problems\Trid.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solution.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

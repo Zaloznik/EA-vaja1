@@ -52,14 +52,14 @@ namespace vaja1.Problems
             double result2 = 0.0;
             if (x.Length != NumberOfDimension || CurrentFes > MaxFes)
             {
-                return -1;
+                return double.MaxValue;
             }
             for (int i = 0; i < NumberOfDimension; i++)
             {
                 result1 += x[i] * x[i];
                 result2 += Math.Cos(C * x[i]);
             }
-            double result = -A * Math.Exp(-B * Math.Sqrt((1 / NumberOfDimension) * result1)) - Math.Exp((1 / NumberOfDimension) * result2) + A + Math.Exp(1);
+            double result = -A * Math.Exp(-B * Math.Sqrt((1 / (double)NumberOfDimension) * result1)) - Math.Exp((1 / (double)NumberOfDimension) * result2) + A + Math.Exp(1);
             CurrentFes++;
             return result;
         }

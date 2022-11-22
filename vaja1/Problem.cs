@@ -86,9 +86,16 @@ namespace vaja1
             double[] returnArray = new double[NumberOfDimension];
             for(int i = 0; i < NumberOfDimension; i++)
             {
-                returnArray[i] = random.NextDouble() * (UpperLimit[0] - LowerLimit[0]) + LowerLimit[0];
+                returnArray[i] = random.NextDouble() * (UpperLimit[i] - LowerLimit[i]) + LowerLimit[i];
             }
             return returnArray;
+        }
+        #endregion
+
+        #region IsFeasible
+        public bool isFeasible(Solution s)
+        {
+            return false;
         }
         #endregion
 
