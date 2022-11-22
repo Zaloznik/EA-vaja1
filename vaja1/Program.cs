@@ -267,21 +267,21 @@ namespace vaja1
             else
             {
                 double[] resitva = smallestFitness(ackleySL);
-                Console.WriteLine("Ackley min: " + resitva[0] + " avg: " + resitva[2]);
+                Console.WriteLine("Ackley min: " + resitva[0] + " avg: " + resitva[2] + " std: " + resitva[3]);
                 resitva = smallestFitness(bukingSL);
-                Console.WriteLine("Bukin min: " + resitva[0] + " avg: " + resitva[2]);
+                Console.WriteLine("Bukin min: " + resitva[0] + " avg: " + resitva[2] + " std: " + resitva[3]);
                 resitva = smallestFitness(easomSL);
-                Console.WriteLine("Easom min: " + resitva[0] + " avg: " + resitva[2]);
+                Console.WriteLine("Easom min: " + resitva[0] + " avg: " + resitva[2] + " std: " + resitva[3]);
                 resitva = smallestFitness(penHolderSL);
-                Console.WriteLine("PenHolder min: " + resitva[0] + " avg: " + resitva[2]);
+                Console.WriteLine("PenHolder min: " + resitva[0] + " avg: " + resitva[2] + " std: " + resitva[3]);
                 resitva = smallestFitness(rosenBrockSL);
-                Console.WriteLine("RosenBrock min: " + resitva[0] + " avg: " + resitva[2]);
+                Console.WriteLine("RosenBrock min: " + resitva[0] + " avg: " + resitva[2] + " std: " + resitva[3]);
                 resitva = smallestFitness(schwefel26SL);
-                Console.WriteLine("Schwefel26 min: " + resitva[0] + " avg: " + resitva[2]);
+                Console.WriteLine("Schwefel26 min: " + resitva[0] + " avg: " + resitva[2] + " std: " + resitva[3]);
                 resitva = smallestFitness(spehreSL);
-                Console.WriteLine("Sphere min: " + resitva[0] + " avg: " + resitva[2]);
+                Console.WriteLine("Sphere min: " + resitva[0] + " avg: " + resitva[2] + " std: " + resitva[3]);
                 resitva = smallestFitness(tridSL);
-                Console.WriteLine("Trid min: " + resitva[0] + " avg: " + resitva[2]);
+                Console.WriteLine("Trid min: " + resitva[0] + " avg: " + resitva[2] + " std: " + resitva[3]);
 
             }
             Console.ReadLine();
@@ -291,9 +291,10 @@ namespace vaja1
         // 0 - smallest fitness
         // 1 - array X
         // 2 - average
+        // 3 - standardni odklon
         public static double[] smallestFitness(List<Solution> solutionA)
         {
-            double[] returnValue = new double[3];
+            double[] returnValue = new double[4];
             returnValue[0] = solutionA[0].Fitness;
             returnValue[1] = 0;
             double sum = solutionA[0].Fitness;
@@ -307,6 +308,12 @@ namespace vaja1
                 }
             }
             returnValue[2] = sum / 100;
+
+            for(int i=0;i<solutionA.Count;i++)
+            {
+                returnValue[3] += Math.Pow(solutionA[i].Fitness - returnValue[2], 2)/100;
+            }
+            returnValue[3] = Math.Sqrt(returnValue[3]);
             return returnValue;
         }
         #endregion
