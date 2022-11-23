@@ -95,7 +95,14 @@ namespace vaja1
         #region IsFeasible
         public bool isFeasible(Solution s)
         {
-            return false;
+            for(int i=0;i<s.X.Length;i++)
+            {
+                if (s.X[i] > UpperLimit[0] && s.X[i] < LowerLimit[0])
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         #endregion
 

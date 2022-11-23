@@ -16,14 +16,14 @@ namespace vaja1
             solution.Fitness = pr.Evaluate(solution.X);
             List<double[]> neighbours = new List<double[]>
             {
-                new double[] { -0.1, -0.1 },
-                new double[] { -0.1, 0 },
-                new double[] { 0, -0.1 },
-                new double[] { 0.1, 10.1 },
-                new double[] { 0.1, 0 },
-                new double[] { 0, 0.1 },
-                new double[] { -0.1, 0.1 },
-                new double[] { 0.1, -0.1 }
+                new double[] { -0.01, -0.01 },
+                new double[] { -0.01, 0.00 },
+                new double[] { 0.00, -0.01 },
+                new double[] { 0.01, 0.01 },
+                new double[] { 0.01, 0.00 },
+                new double[] { 0.00, 0.01 },
+                new double[] { -0.01, 0.01 },
+                new double[] { 0.01, -0.01 }
             };
 
             double[] tempSolution = solution.X;
@@ -33,6 +33,12 @@ namespace vaja1
                 for(int j=0;j<neighbours.Count;j++)
                 {
                     double[] tempSolution2 = AddArrays(solution.X, neighbours[j]);
+                    Solution s = new Solution();
+                    s.X = tempSolution2;
+                    if(!pr.isFeasible(s))
+                    {
+                        continue;
+                    }
                     double tempFitness2 = pr.Evaluate(tempSolution2);
                     if(tempFitness2 < tempFitness)
                     {
