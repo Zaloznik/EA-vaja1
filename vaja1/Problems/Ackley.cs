@@ -50,7 +50,7 @@ namespace vaja1.Problems
         {
             double result1 = 0.0;
             double result2 = 0.0;
-            if (x.Length != NumberOfDimension || CurrentFes > MaxFes)
+            if (x.Length != NumberOfDimension)
             {
                 return double.MaxValue;
             }

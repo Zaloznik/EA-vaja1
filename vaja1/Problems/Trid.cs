@@ -27,7 +27,7 @@ namespace vaja1.Problems
         public override double Evaluate(double[] x)
         {
             double result1 = 0.0, result2 = 0.0;
-            if (x.Length != NumberOfDimension || CurrentFes > MaxFes)
+            if (x.Length != NumberOfDimension)
             {
                 return -1;
             }

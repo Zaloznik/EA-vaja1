@@ -21,7 +21,7 @@ namespace vaja1.Problems
         #region Evaluate
         public override double Evaluate(double[] x)
         {
-            if(x.Length != 2 || CurrentFes > MaxFes)
+            if(x.Length != 2)
             {
                 return -1;
             }
