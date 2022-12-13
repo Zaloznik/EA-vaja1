@@ -92,6 +92,36 @@ namespace vaja1
         }
         #endregion
 
+        #region GenerateVelocity
+        public double[] GenerateVelocity()
+        {
+            double[] returnArray = new double[NumberOfDimension];
+            double[] max = ArrayMinosArray(UpperLimit, LowerLimit);
+            double[] min = new double[NumberOfDimension];
+            for(int i = 0; i < NumberOfDimension; i++)
+            {
+                min[i] = max[i] * (-1);
+            }
+            for (int i = 0; i < NumberOfDimension; i++)
+            {
+                returnArray[i] = random.NextDouble() * (max[i] - min[i]) + min[i];
+            }
+            return returnArray;
+        }
+        #endregion
+
+        #region ArrayMinosArray
+        public double[] ArrayMinosArray(double[] a, double[] b)
+        {
+            double[] newArray = new double[a.Length];
+            for (int i = 0; i < a.Length; i++)
+            {
+                newArray[i] = Math.Abs(a[i] - b[i]);
+            }
+            return newArray;
+        }
+        #endregion
+
         #region IsFeasible
         public bool isFeasible(Solution s)
         {
