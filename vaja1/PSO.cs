@@ -10,7 +10,19 @@ namespace vaja1
 {
     public class PSO : Algorithm
     {
+        public PSO() { }
+
         public List<ParticleSolution> Solutions = new List<ParticleSolution>();
+
+        #region GlobalBestSolution
+        public ParticleSolution GlobalBestSolution
+        {
+            get
+            {
+                return Solutions.FirstOrDefault(x=>x.Fitness == GlobalFitness);
+            }
+        }
+        #endregion
 
         #region GlobalFitness
         private double _globalFitness = double.MaxValue;
@@ -37,23 +49,25 @@ namespace vaja1
         public override Solution Execute(Problem pr)
         {
             ParticleSolution solution;
+            Solutions.Clear();
             for(int i = 0; i < 20; i++)
             {
                 solution = new ParticleSolution(pr);
                 Solutions.Add(solution);
             }
 
-            for(int i = 0; i < pr.MaxFes; i++)
+            Random random = new Random();
+            double rp, rg;
+            for (int i = 0; i < pr.MaxFes; i++)
             {
                 foreach(var particle in Solutions)
                 {
                     for(int z = 0; z < pr.NumberOfDimension; z++)
                     {
-                        Random random = new Random();
-                        double rp = random.NextDouble();
-                        double rg = random.NextDouble();
+                        rp = random.NextDouble();
+                        rg = random.NextDouble();
 
-                        particle.velocity[z] = Omega * particle.velocity[z] + c1 * rp * (particle.X[z] - particle.X[z]) + c2 * rg * (Solutions.FirstOrDefault(h=>h.Fitness == GlobalFitness).X[z] - particle.X[z]);
+                        particle.velocity[z] = Omega * particle.velocity[z] + c1 * rp * (particle.X[z] - particle.X[z]) + c2 * rg * (GlobalBestSolution.X[z] - particle.X[z]);
                     }
                     particle.X = AddArrays(particle.X, particle.velocity);
                 }
