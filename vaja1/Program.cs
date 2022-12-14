@@ -295,57 +295,63 @@ namespace vaja1
 
             #region vaja3
             //List<Solution> ackleySolutions1 = new List<Solution>();
-            List<Solution> ackleySolutions2 = new List<Solution>();
-            List<Solution> ackleySolutions3 = new List<Solution>();
-            List<Solution> bukinSolutions = new List<Solution>();
-            List<Solution> penholderSolutions = new List<Solution>();
-            List<Solution> rosenbrockSolutions1 = new List<Solution>();
-            List<Solution> rosenbrockSolutions2 = new List<Solution>();
-            List<Solution> rosenbrockSolutions3 = new List<Solution>();
-            List<Solution> schwefelSolutions1 = new List<Solution>();
-            List<Solution> schwefelSolutions2 = new List<Solution>();
-            List<Solution> schwefelSolutions3 = new List<Solution>();
+            //List<Solution> ackleySolutions2 = new List<Solution>();
+            //List<Solution> ackleySolutions3 = new List<Solution>();
+            //List<Solution> bukinSolutions = new List<Solution>();
+            //List<Solution> penholderSolutions = new List<Solution>();
+            //List<Solution> rosenbrockSolutions1 = new List<Solution>();
+            //List<Solution> rosenbrockSolutions2 = new List<Solution>();
+            //List<Solution> rosenbrockSolutions3 = new List<Solution>();
+            //List<Solution> schwefelSolutions1 = new List<Solution>();
+            //List<Solution> schwefelSolutions2 = new List<Solution>();
+            //List<Solution> schwefelSolutions3 = new List<Solution>();
             //List<Solution> sphereSolutions1 = new List<Solution>();
-            List<Solution> sphereSolutions2 = new List<Solution>();
-            List<Solution> sphereSolutions3 = new List<Solution>();
-            List<Solution> tridSolutions = new List<Solution>();
+            //List<Solution> sphereSolutions2 = new List<Solution>();
+            //List<Solution> sphereSolutions3 = new List<Solution>();
+            //List<Solution> tridSolutions = new List<Solution>();
+            //List<Solution> rastriginSolutions1 = new List<Solution>();
+            //List<Solution> rastriginSolutions2 = new List<Solution>();
+            List<Solution> rastriginSolutions3 = new List<Solution>();
 
-            Sphere sphere1 = new Sphere(10, 20000);
-            Sphere sphere2 = new Sphere(20, 50000);
-            Sphere sphere3 = new Sphere(30, 100000);
+            //Sphere sphere1 = new Sphere(10, 20000);
+            //Sphere sphere2 = new Sphere(20, 50000);
+            //Sphere sphere3 = new Sphere(30, 100000);
 
-            Ackley ackley1 = new Ackley(10, 20000);
-            Ackley ackley2 = new Ackley(20, 50000);
-            Ackley ackley3 = new Ackley(30, 100000);
+            //Ackley ackley1 = new Ackley(10, 20000);
+            //Ackley ackley2 = new Ackley(20, 50000);
+            //Ackley ackley3 = new Ackley(30, 100000);
 
-            Schwefel26 schwefel1 = new Schwefel26(10, 20000);
-            Schwefel26 schwefel2 = new Schwefel26(20, 50000);
-            Schwefel26 schwefel3 = new Schwefel26(30, 100000);
+            //Schwefel26 schwefel1 = new Schwefel26(10, 20000);
+            //Schwefel26 schwefel2 = new Schwefel26(20, 50000);
+            //Schwefel26 schwefel3 = new Schwefel26(30, 100000);
+            //Rastrigin rastrigin1 = new Rastrigin(10,20000);
+            //Rastrigin rastrigin2 = new Rastrigin(20,50000);
+            Rastrigin rastrigin3 = new Rastrigin(30,100000);
 
-            Rosenbrock rosenbrock1 = new Rosenbrock(10, 20000);
-            Rosenbrock rosenbrock2 = new Rosenbrock(20, 50000);
-            Rosenbrock rosenbrock3 = new Rosenbrock(30, 100000);
+            //Rosenbrock rosenbrock1 = new Rosenbrock(10, 20000);
+            //Rosenbrock rosenbrock2 = new Rosenbrock(20, 50000);
+            //Rosenbrock rosenbrock3 = new Rosenbrock(30, 100000);
 
-            Bukin bukin = new Bukin(20000);
-            PenHolder penHolder = new PenHolder(20000);
-            Trid trid = new Trid(10, 20000);
+            //Bukin bukin = new Bukin(20000);
+            //PenHolder penHolder = new PenHolder(20000);
+            //Trid trid = new Trid(10, 20000);
             PSO pso = new PSO();
 
             for (int i=0;i<50;i++)
             {
-                sphereSolutions2.Add(pso.Execute(sphere2));
+                rastriginSolutions3.Add(pso.Execute(rastrigin3));
             }
 
-            using (TextWriter tw = new StreamWriter("sphere2.txt"))
+            using (TextWriter tw = new StreamWriter("rastrigin3.txt"))
             {
-                foreach(var item in sphereSolutions2)
+                foreach(var item in rastriginSolutions3)
                 {
                     string s = item.Fitness.ToString().Replace(',', '.');
                     tw.WriteLine(s);
                 }
             }
 
-            double[] result = smallestFitness(sphereSolutions2);
+            double[] result = smallestFitness(rastriginSolutions3);
             Console.WriteLine("MIN: " + result[0] + "\nAVG: " + result[2] + "\nSTD: " + result[3]);
 
             #endregion

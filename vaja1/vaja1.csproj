@@ -51,6 +51,7 @@
     <Compile Include="Problems\Bukin.cs" />
     <Compile Include="Problems\Easom.cs" />
     <Compile Include="Problems\PenHolder.cs" />
+    <Compile Include="Problems\Rastrigin.cs" />
     <Compile Include="Problems\Rosenbrock.cs" />
     <Compile Include="Problems\Schwefel26.cs" />
     <Compile Include="Problems\Sphere.cs" />
