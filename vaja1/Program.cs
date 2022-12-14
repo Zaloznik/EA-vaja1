@@ -294,7 +294,7 @@ namespace vaja1
             #endregion
 
             #region vaja3
-            List<Solution> ackleySolutions1 = new List<Solution>();
+            //List<Solution> ackleySolutions1 = new List<Solution>();
             List<Solution> ackleySolutions2 = new List<Solution>();
             List<Solution> ackleySolutions3 = new List<Solution>();
             List<Solution> bukinSolutions = new List<Solution>();
@@ -305,7 +305,7 @@ namespace vaja1
             List<Solution> schwefelSolutions1 = new List<Solution>();
             List<Solution> schwefelSolutions2 = new List<Solution>();
             List<Solution> schwefelSolutions3 = new List<Solution>();
-            List<Solution> sphereSolutions1 = new List<Solution>();
+            //List<Solution> sphereSolutions1 = new List<Solution>();
             List<Solution> sphereSolutions2 = new List<Solution>();
             List<Solution> sphereSolutions3 = new List<Solution>();
             List<Solution> tridSolutions = new List<Solution>();
@@ -330,223 +330,24 @@ namespace vaja1
             PenHolder penHolder = new PenHolder(20000);
             Trid trid = new Trid(10, 20000);
             PSO pso = new PSO();
-            PSO pso2 = new PSO();
-            PSO pso3 = new PSO();
-            PSO pso4 = new PSO();
-            PSO pso5 = new PSO();
-            PSO pso6 = new PSO();
-            PSO pso7 = new PSO();
-            PSO pso8 = new PSO();
-            PSO pso9 = new PSO();
-            PSO pso10 = new PSO();
-            PSO pso11 = new PSO();
-            PSO pso12 = new PSO();
-            PSO pso13 = new PSO();
-            PSO pso14 = new PSO();
-            PSO pso15 = new PSO();
+
             for (int i=0;i<50;i++)
             {
-                
-                sphereSolutions1.Add(pso.Execute(sphere1));
-                sphereSolutions2.Add(pso2.Execute(sphere2));
-                sphereSolutions3.Add(pso3.Execute(sphere3));
-
-                ackleySolutions1.Add(pso4.Execute(ackley1));
-                ackleySolutions2.Add(pso5.Execute(ackley2));
-                ackleySolutions3.Add(pso6.Execute(ackley3));
-                schwefelSolutions1.Add(pso7.Execute(schwefel1));
-                schwefelSolutions2.Add(pso8.Execute(schwefel2));
-                schwefelSolutions3.Add(pso9.Execute(schwefel3));
-
-                rosenbrockSolutions1.Add(pso10.Execute(rosenbrock1));
-                rosenbrockSolutions2.Add(pso11.Execute(rosenbrock2));
-                rosenbrockSolutions3.Add(pso12.Execute(rosenbrock3));
-
-                bukinSolutions.Add(pso13.Execute(bukin));
-                penholderSolutions.Add(pso14.Execute(penHolder));
-                tridSolutions.Add(pso15.Execute(trid));
+                sphereSolutions2.Add(pso.Execute(sphere2));
             }
 
-            Console.WriteLine("----- Sphere 1 -----");
-            Console.WriteLine("MIN: " + smallestFitness(sphereSolutions1)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(sphereSolutions1)[1]);
-            Console.WriteLine("STD: " + smallestFitness(sphereSolutions1)[2]);
-            Console.WriteLine("----- Sphere 2 -----");
-            Console.WriteLine("MIN: " + smallestFitness(sphereSolutions2)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(sphereSolutions2)[1]);
-            Console.WriteLine("STD: " + smallestFitness(sphereSolutions2)[2]);
-            Console.WriteLine("----- Sphere 3 -----");
-            Console.WriteLine("MIN: " + smallestFitness(sphereSolutions3)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(sphereSolutions3)[1]);
-            Console.WriteLine("STD: " + smallestFitness(sphereSolutions3)[2]);
-            Console.WriteLine("----- Ackley 1 -----");
-            Console.WriteLine("MIN: " + smallestFitness(ackleySolutions1)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(ackleySolutions1)[1]);
-            Console.WriteLine("STD: " + smallestFitness(ackleySolutions1)[2]);
-            Console.WriteLine("----- Ackley 2 -----");
-            Console.WriteLine("MIN: " + smallestFitness(ackleySolutions2)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(ackleySolutions2)[1]);
-            Console.WriteLine("STD: " + smallestFitness(ackleySolutions2)[2]);
-            Console.WriteLine("----- Ackley 3 -----");
-            Console.WriteLine("MIN: " + smallestFitness(ackleySolutions3)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(ackleySolutions3)[1]);
-            Console.WriteLine("STD: " + smallestFitness(ackleySolutions3)[2]);
-            Console.WriteLine("----- Schafel 1 -----");
-            Console.WriteLine("MIN: " + smallestFitness(schwefelSolutions1)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(schwefelSolutions1)[1]);
-            Console.WriteLine("STD: " + smallestFitness(schwefelSolutions1)[2]);
-            Console.WriteLine("----- Schafel 2 -----");
-            Console.WriteLine("MIN: " + smallestFitness(schwefelSolutions2)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(schwefelSolutions2)[1]);
-            Console.WriteLine("STD: " + smallestFitness(schwefelSolutions2)[2]);
-            Console.WriteLine("----- Schafel 3 -----");
-            Console.WriteLine("MIN: " + smallestFitness(schwefelSolutions3)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(schwefelSolutions3)[1]);
-            Console.WriteLine("STD: " + smallestFitness(schwefelSolutions3)[2]);
-            Console.WriteLine("----- Rosenbrock 1 -----");
-            Console.WriteLine("MIN: " + smallestFitness(rosenbrockSolutions1)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(rosenbrockSolutions1)[1]);
-            Console.WriteLine("STD: " + smallestFitness(rosenbrockSolutions1)[2]);
-            Console.WriteLine("----- Rosenbrock 2 -----");
-            Console.WriteLine("MIN: " + smallestFitness(rosenbrockSolutions2)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(rosenbrockSolutions2)[1]);
-            Console.WriteLine("STD: " + smallestFitness(rosenbrockSolutions2)[2]);
-            Console.WriteLine("----- Rosenbrock 3 -----");
-            Console.WriteLine("MIN: " + smallestFitness(rosenbrockSolutions3)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(rosenbrockSolutions3)[1]);
-            Console.WriteLine("STD: " + smallestFitness(rosenbrockSolutions3)[2]);
-            Console.WriteLine("----- Bukin -----");
-            Console.WriteLine("MIN: " + smallestFitness(bukinSolutions)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(bukinSolutions)[1]);
-            Console.WriteLine("STD: " + smallestFitness(bukinSolutions)[2]);
-            Console.WriteLine("----- PenHolder -----");
-            Console.WriteLine("MIN: " + smallestFitness(penholderSolutions)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(penholderSolutions)[1]);
-            Console.WriteLine("STD: " + smallestFitness(penholderSolutions)[2]);
-            Console.WriteLine("----- Trid -----");
-            Console.WriteLine("MIN: " + smallestFitness(tridSolutions)[0]);
-            Console.WriteLine("AVG: " + smallestFitness(tridSolutions)[1]);
-            Console.WriteLine("STD: " + smallestFitness(tridSolutions)[2]);
-            using (TextWriter tw = new StreamWriter("Sphere1.txt"))
+            using (TextWriter tw = new StreamWriter("sphere2.txt"))
             {
-                foreach (var item in sphereSolutions1)
+                foreach(var item in sphereSolutions2)
                 {
                     string s = item.Fitness.ToString().Replace(',', '.');
                     tw.WriteLine(s);
                 }
             }
-            using (TextWriter tw = new StreamWriter("Sphere2.txt"))
-            {
-                foreach (var item in sphereSolutions2)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
-            using (TextWriter tw = new StreamWriter("Sphere3.txt"))
-            {
-                foreach (var item in sphereSolutions3)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
-            using (TextWriter tw = new StreamWriter("Ackley1.txt"))
-            {
-                foreach (var item in ackleySolutions1)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
-            using (TextWriter tw = new StreamWriter("Ackley2.txt"))
-            {
-                foreach (var item in ackleySolutions2)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
-            using (TextWriter tw = new StreamWriter("Ackley3.txt"))
-            {
-                foreach (var item in ackleySolutions3)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
-            using (TextWriter tw = new StreamWriter("Schwefel1.txt"))
-            {
-                foreach (var item in schwefelSolutions1)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
-            using (TextWriter tw = new StreamWriter("Schwefel2.txt"))
-            {
-                foreach (var item in schwefelSolutions2)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
-            using (TextWriter tw = new StreamWriter("Schwefel3.txt"))
-            {
-                foreach (var item in schwefelSolutions3)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
-            using (TextWriter tw = new StreamWriter("Rosenbrock1.txt"))
-            {
-                foreach (var item in rosenbrockSolutions1)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
-            using (TextWriter tw = new StreamWriter("Rosenbrock2.txt"))
-            {
-                foreach (var item in rosenbrockSolutions2)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
-            using (TextWriter tw = new StreamWriter("Rosenbrock3.txt"))
-            {
-                foreach (var item in rosenbrockSolutions3)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
-            using (TextWriter tw = new StreamWriter("Bukin.txt"))
-            {
-                foreach (var item in bukinSolutions)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
-            using (TextWriter tw = new StreamWriter("Penholder.txt"))
-            {
-                foreach (var item in penholderSolutions)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
-            using (TextWriter tw = new StreamWriter("Trid.txt"))
-            {
-                foreach (var item in tridSolutions)
-                {
-                    string s = item.Fitness.ToString().Replace(',', '.');
-                    tw.WriteLine(s);
-                }
-            }
+
+            double[] result = smallestFitness(sphereSolutions2);
+            Console.WriteLine("MIN: " + result[0] + "\nAVG: " + result[2] + "\nSTD: " + result[3]);
+
             #endregion
             Console.ReadLine();
         }

@@ -5,76 +5,102 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace vaja1
 {
     public class PSO : Algorithm
     {
-        public PSO() { }
 
-        public List<ParticleSolution> Solutions = new List<ParticleSolution>();
-
-        #region GlobalBestSolution
-        public ParticleSolution GlobalBestSolution
+        #region Constructor
+        public PSO()
         {
-            get
-            {
-                return Solutions.FirstOrDefault(x=>x.Fitness == GlobalFitness);
-            }
+            populationSize = 20;
+            omega = 0.7;
+            c1 = 2;
+            c2 = 2;
         }
         #endregion
 
-        #region GlobalFitness
-        private double _globalFitness = double.MaxValue;
-        public double GlobalFitness
-        {
-            get
-            {
-                foreach(var item in Solutions)
-                {
-                    if(item.Fitness < _globalFitness)
-                    {
-                        _globalFitness = item.Fitness;
-                    }
-                }
-                return _globalFitness;
-            }
-        }
+        #region Properties
+
+        #region Private
+        private int populationSize;
+        private double omega;
+        private double c1;
+        private double c2;
+
+        private List<ParticleSolution> population = new List<ParticleSolution>();
+        private Solution gBest;
+
         #endregion
 
+        #endregion
 
-        public double Omega = 0.7;
-        public double c1 = 2.0, c2 = 2.0;
-
+        #region Execute
         public override Solution Execute(Problem pr)
         {
-            ParticleSolution solution;
-            Solutions.Clear();
-            for(int i = 0; i < 20; i++)
+            Populate(pr);
+            double[] velocity;
+            int maxFes = pr.MaxFes;
+            while (maxFes > 0)
             {
-                solution = new ParticleSolution(pr);
-                Solutions.Add(solution);
-            }
-
-            Random random = new Random();
-            double rp, rg;
-            for (int i = 0; i < pr.MaxFes; i++)
-            {
-                foreach(var particle in Solutions)
+                for(int i = 0; i < populationSize; i++)
                 {
-                    for(int z = 0; z < pr.NumberOfDimension; z++)
+                    velocity = new double[pr.NumberOfDimension];
+                    for(int d = 0; d < pr.NumberOfDimension; d++)
                     {
-                        rp = random.NextDouble();
-                        rg = random.NextDouble();
-
-                        particle.velocity[z] = Omega * particle.velocity[z] + c1 * rp * (particle.X[z] - particle.X[z]) + c2 * rg * (GlobalBestSolution.X[z] - particle.X[z]);
+                        velocity[d] = omega * (population[i].velocity[d]) + c1 * GetRandomNumber(0, 1) * (population[i].pBest.X[d] - population[i].X[d]) + c2 * GetRandomNumber(0, 1) * (gBest.X[d] - population[i].X[d]);
                     }
-                    particle.X = AddArrays(particle.X, particle.velocity);
+                    population[i].updatePosition(velocity);
+                    population[i].Fitness = pr.Evaluate(population[i].X);
+                    maxFes--;
+                    if (population[i].Fitness < population[i].pBest.Fitness)
+                    {
+                        population[i].pBest = new ParticleSolution(pr);
+                        population[i].pBest.X = population[i].X.Clone() as double[];
+                        population[i].pBest.Fitness = population[i].Fitness;
+                    }
+                    if (population[i].Fitness < gBest.Fitness)
+                    {
+                        gBest = new ParticleSolution(pr);
+                        gBest.X = population[i].X.Clone() as double[];
+                        gBest.Fitness = population[i].Fitness;
+                    }
+                }     
+            }
+            return gBest;
+        }
+        #endregion
+
+        #region Populate
+        public void Populate(Problem pr)
+        {
+            for(int i=0;i<populationSize;i++)
+            {
+                ParticleSolution particleSol = new ParticleSolution(pr);
+                population.Add(particleSol);
+                if(population.Count == 1)
+                {
+                    gBest = population[0];
+                }
+                if (population[i].Fitness < gBest.Fitness)
+                {
+                    gBest = new ParticleSolution(pr);
+                    gBest.X = population[i].X.Clone() as double[];
+                    gBest.Fitness = population[i].Fitness;
                 }
             }
-
-            return Solutions.FirstOrDefault(h=>h.Fitness == GlobalFitness);
         }
+        #endregion
+
+        #region GetRandomNumber
+        private double GetRandomNumber(double min, double max)
+        {
+            Random random = new Random();
+            return random.NextDouble() * (max - min) + min;
+        }
+        #endregion
 
         #region AddArrays
         public double[] AddArrays(double[] a, double[] b)
